@@ -40,5 +40,14 @@ while (remainingLetters > 0) {
   }//End Else block
 } //End While loop
 
+var html = "<p>Press any key to get started!</p>" +
+            "<p>Wins:</p>" +
+            "<p>Current Word</p>" +
+            "<p>Numpber of Guesses Remaining</p>" +
+            "<p>Letters Already Guessed</p>";
+
+
+document.querySelector("#game-interface").innerHTML =  html;
+
 alert(answerArray.join(""));
 alert("Great job! The answer was " + word);
