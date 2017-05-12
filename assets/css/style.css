@@ -14,10 +14,32 @@ body {
 /***** Img Div *****/
 .img {
   border: 1px solid black;
+  height: 100%;
 }
 
 
 /***** Game Div *****/
-.game {
+#game-interface {
   border: 1px solid black;
+  font-family: sans-serif;
+  font-weight: 800;
+  height: 18em;
+}
+
+/***** Footer *****/
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: skyblue;
+  text-align: center;
+}
+
+footer a {
+  padding-right: 1em;
+  padding-left: 1em;
+  border-right: 1px solid gray;
+  margin-left:
 }

@@ -19,26 +19,38 @@
           <h1>MTB Hangman</h1>
           </div>
         </div>
-        </div>
       </div>
-    </div>
 
       <!-- 2nd Row -->
       <div class="row">
         <!-- Image Div -->
         <div class="col-xs-12 col-md-6">
           <div class="img">
-            <img class="center-block" src="http://lorempixel.com/200/200/sports/" alt="image for word">
+            <img class="center-block" src="http://lorempixel.com/150/150/sports/" alt="image for word">
           </div>
         </div>
         <!-- Game Interface -->
         <div class="col-xs-12 col-md-6">
           <div id="game-interface" class="text-center">
+            <p>Type a letter (then press guess)</p>
+            <input id="guess" type="text">
+            <input type="button" value="guess" onClick="guessOne()"/>
+            <input type="button" value="quit" onClick="quit()"/>
+            <p id="message">&nbsp;</p>
+            <p>
+            <font size="+3"><span id="answer">puzzle loading..</span></font>
+            </p>
 
           </div>
         </div>
       </div>
-
+    </div>
+    <footer>
+      <p>Great MTB Sites</p>
+      <a href="https://www.mtbproject.com/" target="_blank">MTB Project</a>
+      <a href="https://www.singletracks.com" target="_blank">Singletracks</a>
+      <a href="https://www.pinkbike.com/" target="_blank">Pinkbike</a>
+    </footer>
   <!-- Main JS -->
   <script rel="text/javascript" src="./assets/javascript/game.js"></script>
   </body>

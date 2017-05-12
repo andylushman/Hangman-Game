@@ -1,54 +1,74 @@
-//Declaring Variables
+//Word Bank
+var words = ["enduro", "downhill", "travel", "helment", "berm", "hardtail", "shred", "bonk", "clipless", "cyclocross", "doubletrack", "singletrack", "dulie", "ratchet", "snakebite", "switchback", "trackstand", "schrader", "prista" ];
+
+// word stores the word we want the player to guess
+var word="";
+// answerArray stores the answer board (starting with all _ and gradually filled in)
 var answerArray = [];
-var wins = 0;
-var remainingGuesses = 10;
 
-  //Word Bank
-var words = ["enduro", "downhill", "travel", "helment", "brem", "hardtail", "shred", "bonk", "clipless", "cyclocross", "doubletrack", "singletrack", "dulie", "ratchet", "snakebite", "switchback", "trackstand", "schrader", "prista" ];
+function init(){
+  // Pick a random word
+  word = words[Math.floor(Math.random() * words.length)];
+  // Set up the answer array
+  answerArray = [];
+  for (var i = 0; i < word.length; i++) {
+    answerArray[i] = "_";
+  }
+  document.getElementById("answer").innerHTML= answerArray.join(" ");
+  document.getElementById("message").innerHTML= "Type a letter then press guess, or press quit to stop playing."
+}
+init();
 
-  //Chosing a random word
-var word = words[Math.floor(Math.random() * words.length)];
+function guessOne() {
+    // Get a guess from the player
+    var guess = document.getElementById("guess").value;
+    var showThisMessage = "";
 
-  //Create _ for each random letter in the word
-for(var i = 0; i < word.length; i++){
-  answerArray[i]= "_";
+  if (guess.length !== 1) {
+      showThisMessage ="Please enter only a single letter";
+  } else {
+        // Update the game with the guess
+        var i=0; // an indexer into the array
+        for (i = 0; i < word.length; i++) {
+            if (word[i] === guess) {
+                answerArray[i] = guess;
+                showThisMessage = "YES! "+guess+" is in the answer";
+            }
+        }
+
+        // Update the game for remaining unknowns
+        var remaining_letters = answerArray.length;
+        // recount the remaining letters
+        for (i = 0; i < answerArray.length; i++) {
+            if (answerArray[i] !== '_') {
+                remaining_letters -= 1;
+            }
+        }
+
+        // if no remaining letters, hurray, you won
+        if (remaining_letters == 0) {
+            showThisMessage = "YES! You guessed the word";
+        }
+
+        // (otherwise) if we have no message, wrong guess
+        if (showThisMessage === "") {
+            showThisMessage = "Sorry, no "+guess;
+        }
+
+        // Update the puzzle
+        document.getElementById("answer").innerHTML = answerArray.join(" ");
+
+        // Lend a hand by clearing out their last guess
+        document.getElementById("guess").value = "";
+  }
+  document.getElementById("message").innerHTML = showThisMessage;
 }
 
-var blankWord = answerArray.join(" ");
-
-  //Letters already Guessed
-var lettersGuessed =
-
-  // Take input from the player
-document.onkeyup = function(event) {
-  // Determines which key was pressed
-  var userGuess = event.key;
-
-  //Game Loop
-  while (remainingGuesses > 0) {
-
-    if(userGuess === null){
-      break;
-    } else {
-      //update the game with player guess
-      for(var j = 0; j < word.length; j++) {
-        if(word[j] !== userGuess){
-          remainingGuesses --;
-        }
-        if(word[j] === guess) {
-          answerArray[j] = guess;
-          remainingGuesses --;
-        }
-      } wins ++;
-    }//End For Loop
-  }//End While Loop
-  var html = "<p>Press any key to get started!</p>" +
-            "<p> Wins: " + wins + "</p>" +
-            "<p>Current Word</p>" + "<br>" +
-            blankWord;
-            "<p>Numpber of Guesses Remaining</p>" + "<br>" +
-            remainingLetters;
-            "<p>Letters Already Guessed</p>";
-
-  document.querySelector("#game-interface").innerHTML =  html;
-}//End Function
+function quit() {
+    document.getElementById("message").innerHTML = "The word was "+word;
+    for (var j = 0; j < word.length; j++) {
+        answerArray[j] = word[j];
+    }
+    // Solve the puzzle
+    document.getElementById("answer").innerHTML = answerArray.join(" ");
+}
