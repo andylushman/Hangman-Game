@@ -1,53 +1,57 @@
-//Word Bank
+//Declaring Variables
+var answerArray = [];
+var wins = 0;
+var remainingGuesses = 10;
+
+  //Word Bank
 var words = ["enduro", "downhill", "travel", "helment", "brem", "hardtail", "shred", "bonk", "clipless", "cyclocross", "doubletrack", "singletrack", "dulie", "ratchet", "snakebite", "switchback", "trackstand", "schrader", "prista" ];
 
-//Chosing a random word
+  //Chosing a random word
 var word = words[Math.floor(Math.random() * words.length)];
 
-//Array for answers
-var answerArray = [];
-
-//Create _ for each random letter in the word
+  //Create _ for each random letter in the word
 for(var i = 0; i < word.length; i++){
   answerArray[i]= "_";
 }
 
-//How many letters left
+var blankWord = answerArray.join(" ");
+
+  //How many letters left
 var remainingLetters = word.length
 
-
-//Game Loop
-while (remainingLetters > 0) {
-
-  // Show the player their progress
-  alert(answerArray.join(" "));
-
-  // Take input from the player
-  var guess = prompt("Guess a letter or click cancel to stop playing.")
-  if(guess === null){
-    break;
-  } else if (guess.length !== 1) {
-    alert("Please enter a single letter");
-  } else {
-    //update the game with player guess
-    for(var j = 0; j < word.length; j++) {
-      if(word[j] === guess) {
-        answerArray[j] = guess;
-        // Update answerArray and remainingLetters for every correct guess
-        remainingLetters --;
-      }
-    }
-  }//End Else block
-} //End While loop
-
+//Insert content into index.html
 var html = "<p>Press any key to get started!</p>" +
-            "<p>Wins:</p>" +
-            "<p>Current Word</p>" +
-            "<p>Numpber of Guesses Remaining</p>" +
+            "<p> Wins: " wins +
+            "<p>Current Word</p>" + "<br>" +
+            blankWord;
+            "<p>Numpber of Guesses Remaining</p>" + "<br>" +
+            remainingLetters;
             "<p>Letters Already Guessed</p>";
-
 
 document.querySelector("#game-interface").innerHTML =  html;
 
-alert(answerArray.join(""));
-alert("Great job! The answer was " + word);
+
+//Game Loop
+while (remainingGuesses > 0) {
+
+  // Take input from the player
+    document.onkeyup = function(event) {
+      // Determines which key was pressed
+      var userGuess = event.key;
+
+    if(userGuess === null){
+      break;
+    } else {
+      //update the game with player guess
+      for(var j = 0; j < word.length; j++) {
+        if(word[j] !== userGuess){
+          remainingGuesses --;
+        }
+        if(word[j] === guess) {
+          answerArray[j] = guess;
+          remainingGuesses --;
+        }
+      } wins ++;
+    }//End For Loop
+  }//End function
+}//End While loop
