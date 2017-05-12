@@ -1,1 +1,23 @@
+body {
+  background-image: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+/***** Jumbotron *****/
+.jumbotron {
+  background: none;
+}
+
+
+
+/***** Img Div *****/
+.img {
+  border: 1px solid black;
+}
+
+
+/***** Game Div *****/
+.game {
+  border: 1px solid black;
+}
