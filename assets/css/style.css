@@ -35,6 +35,10 @@ body {
   font-size: 3em;
 }
 
+button {
+  color: #87CC27;
+}
+
 
 /***** Footer *****/
 footer {

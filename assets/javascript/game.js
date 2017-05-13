@@ -32,6 +32,8 @@ function init(){
   }
   document.querySelector("#answer").innerHTML= hangman.answerArray.join(" ");
   document.querySelector("#message").innerHTML= "Type a letter then press guess, or press quit to stop playing."
+  document.querySelector("#remaining-guesses").innerHTML = hangman.remainingGuesses;
+  document.querySelector("#wins").innerHTML = hangman.wins;
 }; //End init()
 
 init(); //Function called when website is loaded to get the game started
@@ -51,6 +53,7 @@ function guess() {
             if (hangman.word[i] === userGuess) {
                 hangman.answerArray[i] = userGuess;
                 hangman.showThisMessage = "YES! "+ userGuess+ " is in the answer";
+
             }
         }
 
@@ -66,9 +69,8 @@ function guess() {
         // if no remaining letters
         if (remainingLetters == 0) {
             hangman.showThisMessage = "YES! You guessed the word";
-            wins ++; //Update wins
-
-            document.querySelector("#wins").innerHTML = wins;
+            hangman.wins ++; //Update wins
+            document.querySelector("#wins").innerHTML = hangman.wins;
         }
 
         // (otherwise) if we have no message, wrong guess
@@ -77,6 +79,11 @@ function guess() {
             hangman.remainingGuesses --;
 
             document.querySelector("#remaining-guesses").innerHTML = hangman.remainingGuesses;
+        }
+
+        if (hangman.remainingGuesses === 0){
+            hangman.showThisMessage = "Sorry, you are out of guesses";
+            quit();
         }
 
         // Update the puzzle
@@ -100,4 +107,4 @@ function quit(){
   }
   // Solve the puzzle
   document.querySelector("#answer").innerHTML = hangman.answerArray.join(" ");
-};
+}; //End quit()
