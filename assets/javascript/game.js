@@ -13,7 +13,7 @@ var hangman = {
 /******************
 Event Listeners
 ******************/
-document.querySelector("#guess-btn").addEventListener("click", guessOne);
+document.querySelector("#guess-btn").addEventListener("click", guess);
 document.querySelector("#next-word-btn").addEventListener("click", nextWord);
 document.querySelector("#quit-btn").addEventListener("click", quit);
 
@@ -37,43 +37,43 @@ function init(){
 init(); //Function called when website is loaded to get the game started
 
 
-function guessOne() {
+function guess() {
   // Get a guess from the player
   hangman.showThisMessage = "";
 
-  var guess = document.querySelector("#guess-input").value.toLowerCase();
+  var userGuess = document.querySelector("#guess-input").value.toLowerCase();
 
-  if (guess.length !== 1) {
+  if (userGuess.length !== 1) {
       hangman.showThisMessage ="Please enter only a single letter";
   } else {
         // Update the game with the guess
         for (i = 0; i < hangman.word.length; i++) {
-            if (hangman.word[i] === guess) {
-                hangman.answerArray[i] = guess;
-                hangman.showThisMessage = "YES! "+guess+" is in the answer";
+            if (hangman.word[i] === userGuess) {
+                hangman.answerArray[i] = userGuess;
+                hangman.showThisMessage = "YES! "+ userGuess+ " is in the answer";
             }
         }
 
         // Update the game for remaining unknowns
-        var remaining_letters = hangman.answerArray.length;
+        var remainingLetters = hangman.answerArray.length;
         // recount the remaining letters
         for (i = 0; i < hangman.answerArray.length; i++) {
             if (hangman.answerArray[i] !== '_') {
-                remaining_letters -= 1;
+                remainingLetters -= 1;
             }
         }
 
         // if no remaining letters
-        if (remaining_letters == 0) {
+        if (remainingLetters == 0) {
             hangman.showThisMessage = "YES! You guessed the word";
-            wins ++;
-            //Update wins
+            wins ++; //Update wins
+
             document.querySelector("#wins").innerHTML = wins;
         }
 
         // (otherwise) if we have no message, wrong guess
         if (hangman.showThisMessage === "") {
-            hangman.showThisMessage = "Sorry, no "+guess;
+            hangman.showThisMessage = "Sorry, no "+ userGuess;
             hangman.remainingGuesses --;
 
             document.querySelector("#remaining-guesses").innerHTML = hangman.remainingGuesses;
@@ -87,7 +87,7 @@ function guessOne() {
   }
   document.querySelector("#message").innerHTML = hangman.showThisMessage;
 
-};//End guessOne()
+};//End guess()
 
 function nextWord() {
 
