@@ -8,6 +8,7 @@ body {
 .jumbotron {
   background: none;
   color: #87CC27;
+  font-family: fantasy;
 }
 
 
@@ -30,7 +31,7 @@ body {
 }
 
 #answer {
-  font-size: 3em; 
+  font-size: 3em;
 }
 
 
