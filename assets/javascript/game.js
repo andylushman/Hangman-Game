@@ -31,7 +31,7 @@ function init(){
     hangman.answerArray[i] = "_";
   }
   document.querySelector("#answer").innerHTML= hangman.answerArray.join(" ");
-  document.querySelector("#message").innerHTML= "Type a letter then press guess, or press quit to stop playing."
+  document.querySelector("#message").innerHTML= "Type a letter then press Guess, or press Quit to stop playing."
   document.querySelector("#remaining-guesses").innerHTML = hangman.remainingGuesses;
   document.querySelector("#wins").innerHTML = hangman.wins;
 }; //End init()
@@ -52,7 +52,7 @@ function guess() {
         for (i = 0; i < hangman.word.length; i++) {
             if (hangman.word[i] === userGuess) {
                 hangman.answerArray[i] = userGuess;
-                hangman.showThisMessage = "YES! "+ userGuess+ " is in the answer";
+                hangman.showThisMessage = "NICE! "+ userGuess+ " is in the answer";
                 hangman.lettersGuessed.push(userGuess);
                 document.querySelector("#letters-guessed").innerHTML = hangman.lettersGuessed;
             }
@@ -69,7 +69,7 @@ function guess() {
 
         // if no remaining letters
         if (remainingLetters === 0) {
-            hangman.showThisMessage = "YES! You guessed the word";
+            hangman.showThisMessage = "Awesome! You guessed the word";
             hangman.wins ++; //Update wins
             document.querySelector("#wins").innerHTML = hangman.wins;
         }
