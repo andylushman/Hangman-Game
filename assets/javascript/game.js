@@ -8,6 +8,7 @@ var answerArray = [];
 //Wins = 0 to start the game
 var wins = 0;
 
+//Initialization
 function init(){
   // Pick a random word
   word = words[Math.floor(Math.random() * words.length)];
@@ -19,7 +20,7 @@ function init(){
   document.getElementById("answer").innerHTML= answerArray.join(" ");
   document.getElementById("message").innerHTML= "Type a letter then press guess, or press quit to stop playing."
 }
-init();
+init(); //Function called when website is loaded to get the game started
 
 function guessOne() {
     // Get a guess from the player
@@ -30,7 +31,6 @@ function guessOne() {
       showThisMessage ="Please enter only a single letter";
   } else {
         // Update the game with the guess
-        var i=0; // an indexer into the array
         for (i = 0; i < word.length; i++) {
             if (word[i] === guess) {
                 answerArray[i] = guess;
