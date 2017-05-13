@@ -5,6 +5,8 @@ var words = ["enduro", "downhill", "travel", "helment", "berm", "hardtail", "shr
 var word="";
 // answerArray stores the answer board (starting with all _ and gradually filled in)
 var answerArray = [];
+//Wins = 0 to start the game
+var wins = 0;
 
 function init(){
   // Pick a random word
@@ -48,6 +50,9 @@ function guessOne() {
         // if no remaining letters, hurray, you won
         if (remaining_letters == 0) {
             showThisMessage = "YES! You guessed the word";
+            wins ++;
+            //Update wins
+            document.getElementById("wins").innerHTML = wins;
         }
 
         // (otherwise) if we have no message, wrong guess
@@ -58,7 +63,7 @@ function guessOne() {
         // Update the puzzle
         document.getElementById("answer").innerHTML = answerArray.join(" ");
 
-        // Lend a hand by clearing out their last guess
+        // Clearing out their last guess
         document.getElementById("guess").value = "";
   }
   document.getElementById("message").innerHTML = showThisMessage;
