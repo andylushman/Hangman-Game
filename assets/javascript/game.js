@@ -5,7 +5,7 @@ var words = ["enduro", "downhill", "travel", "helment", "berm", "hardtail", "shr
 var word="";
 // answerArray stores the answer board (starting with all _ and gradually filled in)
 var answerArray = [];
-//Wins = 0 to start the game
+//Wins = 0 at the beginning of the game
 var wins = 0;
 
 //Initialization
@@ -47,7 +47,7 @@ function guessOne() {
             }
         }
 
-        // if no remaining letters, hurray, you won
+        // if no remaining letters
         if (remaining_letters == 0) {
             showThisMessage = "YES! You guessed the word";
             wins ++;
