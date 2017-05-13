@@ -7,6 +7,8 @@ var word="";
 var answerArray = [];
 //Wins = 0 at the beginning of the game
 var wins = 0;
+//Player should have 10 guesses for each round
+var remainingGuesses = 10;
 
 //Initialization
 function init(){
@@ -58,6 +60,9 @@ function guessOne() {
         // (otherwise) if we have no message, wrong guess
         if (showThisMessage === "") {
             showThisMessage = "Sorry, no "+guess;
+            remainingGuesses --;
+
+            document.getElementById("remaining-guesses").innerHTML = remainingGuesses;
         }
 
         // Update the puzzle
