@@ -39,6 +39,8 @@ init(); //Function called when website is loaded to get the game started
 
 function guessOne() {
   // Get a guess from the player
+  hangman.showThisMessage = "";
+
   var guess = document.querySelector("#guess-input").value.toLowerCase();
 
   if (guess.length !== 1) {
