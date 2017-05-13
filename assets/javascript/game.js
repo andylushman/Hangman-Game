@@ -39,7 +39,7 @@ init(); //Function called when website is loaded to get the game started
 
 function guessOne() {
   // Get a guess from the player
-  var guess = document.querySelector("#guess-input").value;
+  var guess = document.querySelector("#guess-input").value.toLowerCase();
 
   if (guess.length !== 1) {
       hangman.showThisMessage ="Please enter only a single letter";
@@ -92,9 +92,9 @@ function nextWord() {
 };//End nextWord()
 
 function quit(){
-  document.querySelector("#message").innerHTML = "The word was "+word;
-  for (var j = 0; j < word.length; j++) {
-      answerArray[j] = word[j];
+  document.querySelector("#message").innerHTML = "The word was "+ hangman.word;
+  for (var j = 0; j < hangman.word.length; j++) {
+      hangman.answerArray[j] = hangman.word[j];
   }
   // Solve the puzzle
   document.querySelector("#answer").innerHTML = hangman.answerArray.join(" ");
