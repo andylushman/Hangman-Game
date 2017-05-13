@@ -36,10 +36,11 @@
             <p> Wins: <span id="wins"></span></p>
             <p> Remaining Guesses: <span id="remaining-guesses"></span></p>
             <p> Letters already guessed: <span id="letters-guessed"></span></p>
-            <input id="guess" type="text">
-            <input type="button" value="guess" onClick="guessOne()"/>
-            <input type="button" value="quit" onClick="quit()"/>
-            <p id="message"></p>
+            <input id="guess-input" type="text">
+            <button id="guess-btn" type="button" name="guess-btn">Guess</button>
+            <button id="next-word-btn" type="button" name="next-word-btn">Next Word</button>
+            <button id="quit-btn" type="button" name="quit-btn">Quit</button>
+            <p><span id="message"></span></p>
             <p id="answer">Puzzle loading...</p>
 
           </div>

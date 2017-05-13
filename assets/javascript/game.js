@@ -6,11 +6,21 @@ var hangman = {
   "wins": 0,
   "remainingGuesses": 10,
   "lettersGuessed": [],
+  "images": [],
+  "showThisMessage": "",
 };
 
+/******************
+Event Listeners
+******************/
+document.querySelector("#guess-btn").addEventListener("click", guessOne);
+document.querySelector("#next-word-btn").addEventListener("click", nextWord);
+document.querySelector("#quit-btn").addEventListener("click", quit);
 
 
-//Functions
+/******************
+FUNCTIONS
+******************/
 
 //Initialization
 function init(){
@@ -20,8 +30,72 @@ function init(){
   for (var i = 0; i < hangman.word.length; i++) {
     hangman.answerArray[i] = "_";
   }
-  document.getElementById("answer").innerHTML= hangman.answerArray.join(" ");
-  document.getElementById("message").innerHTML= "Type a letter then press guess, or press quit to stop playing."
+  document.querySelector("#answer").innerHTML= hangman.answerArray.join(" ");
+  document.querySelector("#message").innerHTML= "Type a letter then press guess, or press quit to stop playing."
 }; //End init()
 
 init(); //Function called when website is loaded to get the game started
+
+
+function guessOne() {
+  // Get a guess from the player
+  var guess = document.querySelector("#guess-input").value;
+
+  if (guess.length !== 1) {
+      hangman.showThisMessage ="Please enter only a single letter";
+  } else {
+        // Update the game with the guess
+        for (i = 0; i < hangman.word.length; i++) {
+            if (hangman.word[i] === guess) {
+                hangman.answerArray[i] = guess;
+                hangman.showThisMessage = "YES! "+guess+" is in the answer";
+            }
+        }
+
+        // Update the game for remaining unknowns
+        var remaining_letters = hangman.answerArray.length;
+        // recount the remaining letters
+        for (i = 0; i < hangman.answerArray.length; i++) {
+            if (hangman.answerArray[i] !== '_') {
+                remaining_letters -= 1;
+            }
+        }
+
+        // if no remaining letters
+        if (remaining_letters == 0) {
+            hangman.showThisMessage = "YES! You guessed the word";
+            wins ++;
+            //Update wins
+            document.querySelector("#wins").innerHTML = wins;
+        }
+
+        // (otherwise) if we have no message, wrong guess
+        if (hangman.showThisMessage === "") {
+            hangman.showThisMessage = "Sorry, no "+guess;
+            hangman.remainingGuesses --;
+
+            document.querySelector("#remaining-guesses").innerHTML = hangman.remainingGuesses;
+        }
+
+        // Update the puzzle
+        document.querySelector("#answer").innerHTML = hangman.answerArray.join(" ");
+
+        // Clearing out their last guess
+        document.querySelector("#guess-input").value = "";
+  }
+  document.querySelector("#message").innerHTML = hangman.showThisMessage;
+
+};//End guessOne()
+
+function nextWord() {
+
+};//End nextWord()
+
+function quit(){
+  document.querySelector("#message").innerHTML = "The word was "+word;
+  for (var j = 0; j < word.length; j++) {
+      answerArray[j] = word[j];
+  }
+  // Solve the puzzle
+  document.querySelector("#answer").innerHTML = hangman.answerArray.join(" ");
+};
