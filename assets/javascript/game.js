@@ -112,3 +112,5 @@ function quit(){
   // Solve the puzzle
   document.querySelector("#answer").innerHTML = hangman.answerArray.join(" ");
 }; //End quit()
+
+//To do: Images and how to play another round?
