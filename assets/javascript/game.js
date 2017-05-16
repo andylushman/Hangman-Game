@@ -1,3 +1,7 @@
+/******************
+Global Variables
+******************/
+
 var hangman = {
   "words": [
             "enduro", "downhill", "travel", "helment", "berm", "hardtail", "shred", "bonk", "clipless", "cyclocross", "doubletrack", "singletrack", "dulie", "ratchet", "snakebite", "switchback", "trackstand", "schrader", "prista" ],
