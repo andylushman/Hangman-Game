@@ -73,6 +73,14 @@ function guess() {
             hangman.wins ++; //Update wins
             document.querySelector("#wins").innerHTML = hangman.wins;
             //End of round
+            hangman.word = hangman.words[Math.floor(Math.random() * hangman.words.length)];
+            // Set up the answer array
+            for (var i = 0; i < hangman.word.length; i++) {
+              hangman.answerArray[i] = "_";
+            }
+            document.querySelector("#answer").innerHTML= hangman.answerArray.join(" ");
+            document.querySelector("#message").innerHTML= "Type a letter then press Guess, or press Quit to stop playing."
+            
         }
 
         // (otherwise) if we have no message, wrong guess
