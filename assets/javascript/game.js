@@ -14,7 +14,6 @@ var hangman = {
 Event Listeners
 ******************/
 document.querySelector("#guess-btn").addEventListener("click", guess);
-document.querySelector("#next-word-btn").addEventListener("click", nextWord);
 document.querySelector("#quit-btn").addEventListener("click", quit);
 
 
@@ -73,14 +72,20 @@ function guess() {
             hangman.wins ++; //Update wins
             document.querySelector("#wins").innerHTML = hangman.wins;
             //End of round
+            //New Random word
             hangman.word = hangman.words[Math.floor(Math.random() * hangman.words.length)];
             // Set up the answer array
             for (var i = 0; i < hangman.word.length; i++) {
               hangman.answerArray[i] = "_";
             }
+
+            //Display new Random word
             document.querySelector("#answer").innerHTML= hangman.answerArray.join(" ");
             document.querySelector("#message").innerHTML= "Type a letter then press Guess, or press Quit to stop playing."
-            
+            //Reset number of guesses and letters guessed. Aslo, clear out previous guess!
+            // hangman.remainingGuesses = 0;
+            // hangman.lettersGuessed = [];
+
         }
 
         // (otherwise) if we have no message, wrong guess
@@ -109,10 +114,6 @@ function guess() {
 
 };//End guess()
 
-function nextWord() {
-
-
-};//End nextWord()
 
 function quit(){
   document.querySelector("#message").innerHTML = "The word was "+ hangman.word;
