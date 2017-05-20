@@ -3,15 +3,15 @@ Global Variables
 ******************/
 
 var hangman = {
-  "words": [
+  words: [
             "enduro", "downhill", "travel", "helmet", "berm", "hardtail", "shred", "bonk", "clipless", "cyclocross", "doubletrack", "singletrack", "dulie", "ratchet", "snakebite", "switchback", "trackstand", "schrader", "prista" ],
-  "word": "",
-  "answerArray": [],
-  "wins": 0,
-  "remainingGuesses": 10,
-  "lettersGuessed": [],
-  "images": [],
-  "showThisMessage": "",
+  word: "",
+  answerArray: [],
+  wins: 0,
+  remainingGuesses: 10,
+  lettersGuessed: [],
+  images: [],
+  showThisMessage: "",
 };
 
 /******************
